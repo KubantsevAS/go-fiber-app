@@ -21,7 +21,8 @@ type DataBaseConfig struct {
 }
 
 type LogConfig struct {
-	Level int
+	Level  int
+	Format string
 }
 
 func NewDatabaseConfig() *DataBaseConfig {
@@ -32,7 +33,8 @@ func NewDatabaseConfig() *DataBaseConfig {
 
 func NewLogConfig() *LogConfig {
 	return &LogConfig{
-		Level: getInt("LOG_LEVEL", 0),
+		Level:  getInt("LOG_LEVEL", 0),
+		Format: getString("LOG_FORMAT", ""),
 	}
 }
 
