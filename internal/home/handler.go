@@ -10,6 +10,11 @@ type HomeHandler struct {
 	customLogger *zerolog.Logger
 }
 
+type User struct {
+	Id   string
+	Name string
+}
+
 func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 	h := &HomeHandler{
 		router:       router,
@@ -21,7 +26,15 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	data := struct{ Count int }{Count: 3}
+	users := []User{
+		{Id: "TestId1", Name: "User1"},
+		{Id: "TestId1", Name: "User2"},
+	}
+	names := []string{"martin", "john"}
+	data := struct {
+		Names []string
+		Users []User
+	}{Names: names, Users: users}
 	return c.Render("page", data)
 }
 
