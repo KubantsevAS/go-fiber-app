@@ -1,6 +1,9 @@
 package home
 
 import (
+	"demo/go-fiber/pkg/tadaptor"
+	"demo/go-fiber/views"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -26,16 +29,8 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	users := []User{
-		{Id: "TestId1", Name: "User1"},
-		{Id: "TestId1", Name: "User2"},
-	}
-	names := []string{"martin", "john"}
-	data := struct {
-		Names []string
-		Users []User
-	}{Names: names, Users: users}
-	return c.Render("page", data)
+	component := views.TemplateHello("Mister N")
+	return tadaptor.Render(c, component)
 }
 
 func (h *HomeHandler) error(c *fiber.Ctx) error {
