@@ -29,7 +29,7 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	component := views.TemplateHello("Mister N")
+	component := views.Main()
 	return tadaptor.Render(c, component)
 }
 
