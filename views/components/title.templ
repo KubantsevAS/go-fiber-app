@@ -4,6 +4,12 @@ type TitleProps struct {
     Title string
 }
 
+css TitleClass() {
+    font-size: { "70px" };
+    font-weight: { "bold" };
+    color: { "#fff" };
+}
+
 templ Title(props TitleProps) {
-    <h1>{props.Title}</h1>
+    <h1 class={TitleClass()}>{props.Title}</h1>
 }

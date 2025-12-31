@@ -1,0 +1,22 @@
+package layout
+
+import "fmt"
+
+css headerClass(percent int) {
+    background: { "#222" };
+    color: { "#e5e5e5" };
+    margin: { "0 auto" };
+    display: { "flex" };
+    flex-direction: { "column" };
+    align-items: { "center" };
+    text-align: { "center" };
+    gap: { "12px" };
+    width: { fmt.Sprintf("%d%%", percent) };
+}
+
+templ Header() {
+    <div class={headerClass(80)}>
+        @Menu()
+        { children... }
+    </div>
+}

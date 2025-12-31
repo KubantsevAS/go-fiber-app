@@ -1,0 +1,13 @@
+package components
+
+type SubtitleProps struct {
+    Subtitle string
+}
+
+css SubtitleClass() {
+    color: { "#e5e5e5" };
+}
+
+templ Subtitle(props SubtitleProps) {
+    <div class={SubtitleClass()}>{props.Subtitle}</div>
+}

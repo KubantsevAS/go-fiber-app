@@ -1,11 +1,17 @@
 package views
 
 import "demo/go-fiber/views/components"
+import "demo/go-fiber/views/layout"
 
 templ Main() {
     <main>
+    @layout.Header() {
         @components.Title(components.TitleProps{
             Title: "Find your dream job",
         })
+        @components.Subtitle(components.SubtitleProps{
+            Subtitle: "Easy way to use",
+        })
+    }
     </main>
 }
