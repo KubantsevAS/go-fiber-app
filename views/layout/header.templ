@@ -3,8 +3,7 @@ package layout
 import "fmt"
 
 css headerClass(percent int) {
-    background: { "#222" };
-    color: { "#e5e5e5" };
+    background: { templ.SafeCSSProperty("var(--color-bg-dark)") };
     margin: { "0 auto" };
     display: { "flex" };
     flex-direction: { "column" };
@@ -15,7 +14,7 @@ css headerClass(percent int) {
 }
 
 templ Header() {
-    <div class={headerClass(80)}>
+    <div class={headerClass(100)}>
         @Menu()
         { children... }
     </div>

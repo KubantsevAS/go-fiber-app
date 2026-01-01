@@ -12,8 +12,7 @@ import "fmt"
 
 func headerClass(percent int) templ.CSSClass {
 	templ_7745c5c3_CSSBuilder := templruntime.GetBuilder()
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background`, "#222")))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`color`, "#e5e5e5")))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background`, templ.SafeCSSProperty("var(--color-bg-dark)"))))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`margin`, "0 auto")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`display`, "flex")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`flex-direction`, "column")))
@@ -49,7 +48,7 @@ func Header() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{headerClass(80)}
+		var templ_7745c5c3_Var2 = []any{headerClass(100)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
