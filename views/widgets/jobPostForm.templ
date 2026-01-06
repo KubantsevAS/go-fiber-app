@@ -1,0 +1,45 @@
+package widgets
+
+import "demo/go-fiber/views/components"
+
+templ JobPostForm() {
+    <form class={JobPostFormClass()} id="new-job-post" action="/publishJobPost" method="post">
+        @components.Input(components.InputProps{
+            Name: "job_title",
+            Placeholder: "Job Title",
+        })
+        @components.Input(components.InputProps{
+            Name: "company",
+            Placeholder: "Company",
+        })
+        @components.Input(components.InputProps{
+            Name: "company_scope",
+            Placeholder: "Company scope",
+        })
+        @components.Input(components.InputProps{
+            Name: "salary",
+            Placeholder: "Salary",
+        })
+        @components.Input(components.InputProps{
+            Name: "location",
+            Placeholder: "Location",
+        })
+        @components.Input(components.InputProps{
+            Name: "email",
+            Placeholder: "Email",
+        })
+        @components.SubmitButton(){
+            Publish Job Post
+        }
+    </form>
+}
+
+css JobPostFormClass() {
+    display: {"grid"};
+    grid-template-columns: {templ.SafeCSSProperty("minmax(200px, 435px) minmax(200px, 435px)")};
+    gap: {"30px 24px"};
+    padding: {"0 20px"};
+    justify-content: {"center"};
+    width: {"100%"};
+    align-self: {"stretch"};
+}

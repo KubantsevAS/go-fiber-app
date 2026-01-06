@@ -2,6 +2,7 @@ package views
 
 import "demo/go-fiber/views/components"
 import "demo/go-fiber/views/layout"
+import "demo/go-fiber/views/widgets"
 
 templ Main() {
     @layout.Layout(layout.LayoutProps{
@@ -26,41 +27,7 @@ templ Main() {
                         Subtitle: "Fill up Job Post data below",
                     })
                 }
-                @components.Form(){
-                    @components.Input(components.InputProps{
-                        Title: "Job Title",
-                        Name: "job_title",
-                        Placeholder: "Job Title",
-                    })
-                    @components.Input(components.InputProps{
-                        Title: "Company",
-                        Name: "company",
-                        Placeholder: "Company",
-                    })
-                    @components.Input(components.InputProps{
-                        Title: "Company scope",
-                        Name: "company_scope",
-                        Placeholder: "Company scope",
-                    })
-                    @components.Input(components.InputProps{
-                        Title: "Salary",
-                        Name: "salary",
-                        Placeholder: "Salary",
-                    })
-                    @components.Input(components.InputProps{
-                        Title: "Location",
-                        Name: "location",
-                        Placeholder: "Location",
-                    })
-                    @components.Input(components.InputProps{
-                        Title: "Email",
-                        Name: "email",
-                        Placeholder: "Email",
-                    })
-                    @components.SubmitButton(){
-                        Publish Job Post
-                    }
-                }
+                @widgets.JobPostForm()
             }
         </main>
     }
