@@ -1,0 +1,15 @@
+package layout
+
+css Title2Class() {
+    display: { "flex" };
+    flex-direction: { "column" };
+    align-items: { "center" };
+    text-align: { "center" };
+    gap: { "40px" };
+}
+
+templ Title2() {
+    <div class={Title2Class()}>
+        { children... }
+    </div>
+}

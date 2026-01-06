@@ -6,14 +6,23 @@
     --color-gray: rgba(0, 0, 0, .5);
     --color-green-primary: #309689;
     --color-green-primary-hover: #26786D;
+    --color-dark-aqua: rgba(48, 150, 137, 0.10);
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--color-gray);
-    color: var(--color-white);
+    background: var(--color-white);
+    color: var(--color-black);
     font-family: "Roboto", sans-serif;
+}
+
+section {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 * {

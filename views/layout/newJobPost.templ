@@ -1,0 +1,14 @@
+package layout
+
+
+templ NewJobPost() {
+    <section class={NewJobPostClass()}>
+        { children... }
+    </section>
+}
+
+css NewJobPostClass() {
+    background: { templ.SafeCSSProperty("var(--color-dark-aqua)") };
+    gap: { "60px" };
+    padding: { "60px 0 120px"};
+}

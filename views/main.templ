@@ -17,17 +17,51 @@ templ Main() {
                     Subtitle: "Easy way to use",
                 })
             }
-            <div style="background: rgba(48, 150, 137, 0.10)">
-                @components.Title2(components.Title2Props{
-                    Title: "Publish job post",
-                })
-                @components.Input(components.InputProps{
-                    Title: "test",
-                    Name: "test",
-                    Placeholder: "test",
-                })
-                @components.SubmitButton()
-            </div>
+            @layout.NewJobPost(){
+                @layout.Title2(){
+                    @components.Title2(components.Title2Props{
+                        Title: "Publish job post",
+                    })
+                    @components.Subtitle2(components.Subtitle2Props{
+                        Subtitle: "Fill up Job Post data below",
+                    })
+                }
+                @components.Form(){
+                    @components.Input(components.InputProps{
+                        Title: "Job Title",
+                        Name: "job_title",
+                        Placeholder: "Job Title",
+                    })
+                    @components.Input(components.InputProps{
+                        Title: "Company",
+                        Name: "company",
+                        Placeholder: "Company",
+                    })
+                    @components.Input(components.InputProps{
+                        Title: "Company scope",
+                        Name: "company_scope",
+                        Placeholder: "Company scope",
+                    })
+                    @components.Input(components.InputProps{
+                        Title: "Salary",
+                        Name: "salary",
+                        Placeholder: "Salary",
+                    })
+                    @components.Input(components.InputProps{
+                        Title: "Location",
+                        Name: "location",
+                        Placeholder: "Location",
+                    })
+                    @components.Input(components.InputProps{
+                        Title: "Email",
+                        Name: "email",
+                        Placeholder: "Email",
+                    })
+                    @components.SubmitButton(){
+                        Publish Job Post
+                    }
+                }
+            }
         </main>
     }
 }

@@ -8,13 +8,16 @@ type InputProps struct {
 
 templ Input(props InputProps) {
     @InputStyle()
-    <input class="input" placeholder={props.Placeholder} name={props.Name} />
+    <input class="input" type="text" placeholder={props.Placeholder} name={props.Name} />
 }
 
 templ InputStyle() {
     <style>
         .input {
             height: 80px;
+            width: 100%;
+            max-width: 435px;
+            align-self: stretch;
             padding: 20px;
             border-radius: 20px;
             background: var(--color-white);

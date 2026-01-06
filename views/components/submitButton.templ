@@ -2,12 +2,16 @@ package components
 
 templ SubmitButton() {
     @SubmitButtonStyle()
-    <button class="submit-button">{children...}</button>
+    <button class="submit-button" type="submit">{children...}</button>
 }
 
 templ SubmitButtonStyle() {
     <style>
         .submit-button {
+            grid-column: span 2;
+            width: fit-content;
+            height: 80px;
+            justify-self: center;
             border-radius: 20px;
             color: var(--color-white);
             text-decoration: none;
