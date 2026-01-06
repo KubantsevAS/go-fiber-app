@@ -1,0 +1,21 @@
+package components
+
+type Title2Props struct {
+    Title string
+}
+
+templ Title2(props Title2Props) {
+    @Title2Style()
+    <h2 class="title-2">{props.Title}</h2>
+}
+
+templ Title2Style() {
+    <style>
+        .title-2 {
+            font-weight: "bold";
+            color: var(--color-black);
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+    </style>
+}

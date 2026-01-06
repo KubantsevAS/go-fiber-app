@@ -2,6 +2,8 @@
     --color-dark: #333;
     --color-gray: #555;
     --color-white: #fff;
+    --color-black: #000;
+    --color-gray: rgba(0, 0, 0, .5);
     --color-green-primary: #309689;
     --color-green-primary-hover: #26786D;
 }
