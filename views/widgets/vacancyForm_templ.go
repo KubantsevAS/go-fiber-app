@@ -10,7 +10,7 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import "demo/go-fiber/views/components"
 
-func JobPostForm() templ.Component {
+func VacancyForm() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -31,7 +31,7 @@ func JobPostForm() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{JobPostFormClass()}
+		var templ_7745c5c3_Var2 = []any{VacancyFormClass()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -43,13 +43,13 @@ func JobPostForm() templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var2).String())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/jobPostForm.templ`, Line: 1, Col: 0}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancyForm.templ`, Line: 1, Col: 0}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" id=\"new-job-post\" action=\"/publishJobPost\" method=\"post\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" id=\"vacancy-form\" action=\"/vacancy\" method=\"post\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -107,7 +107,7 @@ func JobPostForm() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "Publish Job Post")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "Publish Vacancy")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -125,7 +125,7 @@ func JobPostForm() templ.Component {
 	})
 }
 
-func JobPostFormClass() templ.CSSClass {
+func VacancyFormClass() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder := templruntime.GetBuilder()
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`display`, "grid")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`grid-template-columns`, templ.SafeCSSProperty("minmax(200px, 435px) minmax(200px, 435px)"))))
@@ -134,7 +134,7 @@ func JobPostFormClass() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`justify-content`, "center")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`width`, "100%")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`align-self`, "stretch")))
-	templ_7745c5c3_CSSID := templ.CSSID(`JobPostFormClass`, templ_7745c5c3_CSSBuilder.String())
+	templ_7745c5c3_CSSID := templ.CSSID(`VacancyFormClass`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
 		Class: templ.SafeCSS(`.` + templ_7745c5c3_CSSID + `{` + templ_7745c5c3_CSSBuilder.String() + `}`),

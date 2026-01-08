@@ -2,8 +2,8 @@ package widgets
 
 import "demo/go-fiber/views/components"
 
-templ JobPostForm() {
-    <form class={JobPostFormClass()} id="new-job-post" action="/publishJobPost" method="post">
+templ VacancyForm() {
+    <form class={VacancyFormClass()} id="vacancy-form" action="/vacancy" method="post">
         @components.Input(components.InputProps{
             Name: "job_title",
             Placeholder: "Job Title",
@@ -29,12 +29,12 @@ templ JobPostForm() {
             Placeholder: "Email",
         })
         @components.SubmitButton(){
-            Publish Job Post
+            Publish Vacancy
         }
     </form>
 }
 
-css JobPostFormClass() {
+css VacancyFormClass() {
     display: {"grid"};
     grid-template-columns: {templ.SafeCSSProperty("minmax(200px, 435px) minmax(200px, 435px)")};
     gap: {"30px 24px"};
