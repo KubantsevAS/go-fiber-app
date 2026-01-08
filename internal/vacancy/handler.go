@@ -11,14 +11,16 @@ type vacancyHandler struct {
 }
 
 func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
-	v := &vacancyHandler{
+	h := &vacancyHandler{
 		router:       router,
 		customLogger: customLogger,
 	}
-	vacancyGroup := v.router.Group("/vacancy")
-	vacancyGroup.Post("/", v.createVacancy)
+	vacancyGroup := h.router.Group("/vacancy")
+	vacancyGroup.Post("/", h.createVacancy)
 }
 
 func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
+	email := c.FormValue("email")
+	h.customLogger.Info().Msg(email)
 	return c.SendString("vacancy created")
 }

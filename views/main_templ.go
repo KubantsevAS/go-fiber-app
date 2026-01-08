@@ -108,7 +108,7 @@ func Main() templ.Component {
 					}
 					ctx = templ.InitializeContext(ctx)
 					templ_7745c5c3_Err = components.Title2(components.Title2Props{
-						Title: "Publish job post",
+						Title: "Publish Vacancy",
 					}).Render(ctx, templ_7745c5c3_Buffer)
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
@@ -118,7 +118,7 @@ func Main() templ.Component {
 						return templ_7745c5c3_Err
 					}
 					templ_7745c5c3_Err = components.Subtitle2(components.Subtitle2Props{
-						Subtitle: "Fill up Job Post data below",
+						Subtitle: "Fill up Vacancy data below",
 					}).Render(ctx, templ_7745c5c3_Buffer)
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
