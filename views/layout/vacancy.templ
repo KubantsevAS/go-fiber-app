@@ -1,13 +1,13 @@
 package layout
 
 
-templ NewJobPost() {
-    <section class={NewJobPostClass()}>
+templ Vacancy() {
+    <section class={VacancyClass()}>
         { children... }
     </section>
 }
 
-css NewJobPostClass() {
+css VacancyClass() {
     background: { templ.SafeCSSProperty("var(--color-dark-aqua)") };
     gap: { "60px" };
     padding: { "60px 0 120px"};
