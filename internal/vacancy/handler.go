@@ -2,6 +2,7 @@ package vacancy
 
 import (
 	"demo/go-fiber/pkg/tadaptor"
+	"demo/go-fiber/pkg/validator"
 	"demo/go-fiber/views/components"
 
 	"github.com/a-h/templ"
@@ -34,7 +35,7 @@ func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
 		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email is empty"},
 	)
 	if len(errors.Errors) > 0 {
-		component = components.Notification("Vacancy creation fail", "fail")
+		component = components.Notification(validator.FormatErrors(errors), "fail")
 		return tadaptor.Render(c, component)
 	}
 
