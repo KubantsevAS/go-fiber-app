@@ -3,43 +3,47 @@ package widgets
 import "demo/go-fiber/views/components"
 
 templ VacancyForm() {
-    <form
-        class={VacancyFormClass()}
-        id="vacancy-form"
-        hx-post="/vacancy"
-        hx-trigger="submit"
-        hx-target="#vacancy-result"
-        hx-swap="innerHTML"
-    >
-        @components.Input(components.InputProps{
-            Name: "job_title",
-            Placeholder: "Job Title",
-        })
-        @components.Input(components.InputProps{
-            Name: "company",
-            Placeholder: "Company",
-        })
-        @components.Input(components.InputProps{
-            Name: "company_scope",
-            Placeholder: "Company scope",
-        })
-        @components.Input(components.InputProps{
-            Name: "salary",
-            Placeholder: "Salary",
-        })
-        @components.Input(components.InputProps{
-            Name: "location",
-            Placeholder: "Location",
-        })
-        @components.Input(components.InputProps{
-            Name: "email",
-            Placeholder: "Email",
-        })
-        @components.SubmitButton(){
-            Publish Vacancy
-        }
-    </form>
-    <div id="vacancy-result"></div>
+    <div>
+        @LoaderStyle()
+        <div id="vacancy-result"></div>
+        <form
+            class={VacancyFormClass()}
+            id="vacancy-form"
+            hx-post="/vacancy"
+            hx-trigger="submit"
+            hx-target="#vacancy-result"
+            hx-swap="innerHTML swap:.2s"
+        >
+            @components.Input(components.InputProps{
+                Name: "job_title",
+                Placeholder: "Job Title",
+            })
+            @components.Input(components.InputProps{
+                Name: "company",
+                Placeholder: "Company",
+            })
+            @components.Input(components.InputProps{
+                Name: "company_scope",
+                Placeholder: "Company scope",
+            })
+            @components.Input(components.InputProps{
+                Name: "salary",
+                Placeholder: "Salary",
+            })
+            @components.Input(components.InputProps{
+                Name: "location",
+                Placeholder: "Location",
+            })
+            @components.Input(components.InputProps{
+                Name: "email",
+                Placeholder: "Email",
+            })
+            @components.SubmitButton(){
+                <div class="vacancy-button-text">Publish Vacancy</div>
+                <div class="vacancy-loader"></div>
+            }
+        </form>
+    </div>
 }
 
 css VacancyFormClass() {
@@ -50,4 +54,41 @@ css VacancyFormClass() {
     justify-content: {"center"};
     width: {"100%"};
     align-self: {"stretch"};
+}
+
+templ LoaderStyle() {
+    <style>
+        .vacancy-loader {
+            display: none;
+            width: 50px;
+            margin: auto;
+            aspect-ratio: 1;
+            border: 4px solid #0000;
+            border-radius: 50%;
+            border-right-color: #ffffff;
+            animation: l15 1s infinite linear;
+        }
+        .htmx-request .vacancy-button-text {
+            display: none;
+        }
+        .htmx-request .vacancy-loader {
+            display: grid;
+        }
+        .vacancy-loader::before,
+        .vacancy-loader::after {    
+            content: "";
+            grid-area: 1/1;
+            margin: 2px;
+            border: inherit;
+            border-radius: 50%;
+            animation: l15 2s infinite;
+        }
+        .vacancy-loader::after {
+            margin: 8px;
+            animation-duration: 3s;
+        }
+        @keyframes l15{ 
+            100%{transform: rotate(1turn)}
+        }
+    </style>
 }

@@ -21,8 +21,11 @@ templ Notification(message string, status NotificationStatus) {
 templ NotificationStyle() {
     <style>
         .notification {
-            width: 100%;
-            padding: 30px;
+            width: fit-content;
+            margin: 10px auto;
+            opacity: 1;
+            border-radius: 20px;
+            padding: 15px;
             font-size: 16px;
             color: var(--color-white);
         }
@@ -31,6 +34,10 @@ templ NotificationStyle() {
         }
         .notification-fail {
             background: #ab2828;
+        }
+        .htmx-swapping .notification {
+            opacity: 0;
+            transition: opacity .2s ease-out;
         }
     </style>
 }
