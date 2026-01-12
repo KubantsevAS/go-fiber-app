@@ -4,6 +4,9 @@ import (
 	"demo/go-fiber/pkg/tadaptor"
 	"demo/go-fiber/views/components"
 
+	"github.com/a-h/templ"
+	"github.com/gobuffalo/validate"
+	"github.com/gobuffalo/validate/validators"
 	"github.com/gofiber/fiber/v2"
 	"github.com/rs/zerolog"
 )
@@ -23,8 +26,20 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
-	email := c.FormValue("email")
-	h.customLogger.Info().Msg(email)
-	component := components.Notification("Vacancy successfully created")
+	var component templ.Component
+	form := VacancyCreateForm{
+		Email: c.FormValue("email"),
+	}
+	errors := validate.Validate(
+		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email is empty"},
+	)
+	if len(errors.Errors) > 0 {
+		component = components.Notification("Vacancy creation fail", "fail")
+		return tadaptor.Render(c, component)
+	}
+
+	h.customLogger.Info().Msg(form.Email)
+
+	component = components.Notification("Vacancy successfully created", "success")
 	return tadaptor.Render(c, component)
 }
