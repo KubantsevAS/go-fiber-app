@@ -10,8 +10,8 @@ import (
 func FormatErrors(errors *validate.Errors) string {
 	result := ""
 
-	for key, value := range errors.Errors {
-		result += fmt.Sprintf("%s: %s\n", key, strings.Join(value, ", "))
+	for _, value := range errors.Errors {
+		result += fmt.Sprintf("%s\n", strings.Join(value, ", "))
 	}
 
 	return result

@@ -4,7 +4,6 @@ import (
 	"demo/go-fiber/pkg/tadaptor"
 	"demo/go-fiber/pkg/validator"
 	"demo/go-fiber/views/components"
-	"time"
 
 	"github.com/a-h/templ"
 	"github.com/gobuffalo/validate"
@@ -30,13 +29,21 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
 	var component templ.Component
 	form := VacancyCreateForm{
-		Email: c.FormValue("email"),
+		Email:        c.FormValue("email"),
+		JobTitle:     c.FormValue("job_title"),
+		Company:      c.FormValue("company"),
+		CompanyScope: c.FormValue("company_scope"),
+		Salary:       c.FormValue("salary"),
+		Location:     c.FormValue("location"),
 	}
 	errors := validate.Validate(
 		&validators.EmailIsPresent{Name: "Email", Field: form.Email, Message: "Email is empty"},
+		&validators.StringIsPresent{Name: "Job Title", Field: form.JobTitle, Message: "Job Title is empty"},
+		&validators.StringIsPresent{Name: "Company", Field: form.Company, Message: "Company is empty"},
+		&validators.StringIsPresent{Name: "Company scope", Field: form.CompanyScope, Message: "Company scope is empty"},
+		&validators.StringIsPresent{Name: "Salary", Field: form.Salary, Message: "Salary is empty"},
+		&validators.StringIsPresent{Name: "Location", Field: form.Location, Message: "Location is empty"},
 	)
-
-	time.Sleep(time.Second * 2)
 
 	if len(errors.Errors) > 0 {
 		component = components.Notification(validator.FormatErrors(errors), "fail")
