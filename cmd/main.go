@@ -20,7 +20,6 @@ func main() {
 	customLogger := logger.NewLogger((logConfig))
 
 	app := fiber.New()
-
 	app.Use(fiberzerolog.New(fiberzerolog.Config{
 		Logger: customLogger,
 	}))
@@ -30,8 +29,12 @@ func main() {
 	dbpool := database.CreateDbPool(dbConfig, customLogger)
 	defer dbpool.Close()
 
+	// Repositories
+	vacancyRepo := vacancy.NewRepository(dbpool, customLogger)
+
+	// Handlers
+	vacancy.NewHandler(app, customLogger, vacancyRepo)
 	home.NewHandler(app, customLogger)
-	vacancy.NewHandler(app, customLogger)
 
 	app.Listen(":3000")
 }
