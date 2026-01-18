@@ -54,6 +54,12 @@ func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
 
 	h.customLogger.Info().Msg(form.Email)
 
+	if err := h.repository.addVacancy(form); err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		component = components.Notification("Server failed to respond, try again", "fail")
+		return tadaptor.Render(c, component)
+	}
+
 	component = components.Notification("Vacancy successfully created", "success")
 	return tadaptor.Render(c, component)
 }
