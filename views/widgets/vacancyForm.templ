@@ -3,7 +3,7 @@ package widgets
 import "demo/go-fiber/views/components"
 
 templ VacancyForm() {
-    <div>
+    <div hx-ext="response-targets">
         @LoaderStyle()
         <div id="vacancy-result"></div>
         <form
@@ -12,7 +12,9 @@ templ VacancyForm() {
             hx-post="/vacancy"
             hx-trigger="submit"
             hx-target="#vacancy-result"
+            hx-target-error="#vacancy-result"
             hx-swap="innerHTML swap:.2s"
+            hx-on::after-request="if(event.detail.successful) this.reset()"
         >
             @components.Input(components.InputProps{
                 Name: "job_title",
