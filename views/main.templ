@@ -3,6 +3,7 @@ package views
 import "demo/go-fiber/views/components"
 import "demo/go-fiber/views/layout"
 import "demo/go-fiber/views/widgets"
+import "time"
 
 templ Main() {
     @layout.Layout(layout.LayoutProps{
@@ -29,6 +30,15 @@ templ Main() {
                 }
                 @widgets.VacancyForm()
             }
+            @components.VacancyCard(components.VacancyCardProps{
+                Createdat: time.Now(),
+                Role: "Engineer",
+                Email: "example@mail.com",
+                Company: "ExampleCorp",
+                Salary: "1000$",
+                CompanyType: "IT",
+                Location: "Online",
+            })
         </main>
     }
 }

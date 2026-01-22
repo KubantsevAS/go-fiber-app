@@ -11,6 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "demo/go-fiber/views/components"
 import "demo/go-fiber/views/layout"
 import "demo/go-fiber/views/widgets"
+import "time"
 
 func Main() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -140,6 +141,18 @@ func Main() templ.Component {
 				return nil
 			})
 			templ_7745c5c3_Err = layout.Vacancy().Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
+				Createdat:   time.Now(),
+				Role:        "Engineer",
+				Email:       "example@mail.com",
+				Company:     "ExampleCorp",
+				Salary:      "1000$",
+				CompanyType: "IT",
+				Location:    "Online",
+			}).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
