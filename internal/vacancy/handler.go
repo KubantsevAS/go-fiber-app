@@ -27,6 +27,15 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *V
 	}
 	vacancyGroup := h.router.Group("/vacancy")
 	vacancyGroup.Post("/", h.createVacancy)
+	vacancyGroup.Get("/getall", h.getAll)
+}
+
+func (h *vacancyHandler) getAll(c *fiber.Ctx) error {
+	vacancies, err := h.repository.getAll()
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+	}
+	return c.JSON(vacancies)
 }
 
 func (h *vacancyHandler) createVacancy(c *fiber.Ctx) error {
