@@ -3,9 +3,9 @@ package views
 import "demo/go-fiber/views/components"
 import "demo/go-fiber/views/layout"
 import "demo/go-fiber/views/widgets"
-import "time"
+import "demo/go-fiber/internal/vacancy"
 
-templ Main() {
+templ Main(vacancies []vacancy.Vacancy) {
     @layout.Layout(layout.LayoutProps{
         Title: "Find a dream job",
         MetaDescription: "Website for job search",
@@ -30,15 +30,19 @@ templ Main() {
                 }
                 @widgets.VacancyForm()
             }
-            @components.VacancyCard(components.VacancyCardProps{
-                Createdat: time.Now(),
-                Role: "Engineer",
-                Email: "example@mail.com",
-                Company: "ExampleCorp",
-                Salary: "1000$",
-                CompanyType: "IT",
-                Location: "Online",
-            })
+            <div>
+                for _, vacancy := range vacancies {
+                    @components.VacancyCard(components.VacancyCardProps{
+                        Createdat: vacancy.CreatedAt,
+                        Role: vacancy.Role,
+                        Email: vacancy.Email,
+                        Company: vacancy.Company,
+                        Salary: vacancy.Salary,
+                        CompanyType: vacancy.Type,
+                        Location: vacancy.Location,
+                    })
+                }
+            </div>
         </main>
     }
 }

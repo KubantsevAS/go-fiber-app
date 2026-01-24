@@ -22,8 +22,8 @@ func NewRepository(dbpool *pgxpool.Pool, customLogger *zerolog.Logger) *VacancyR
 	}
 }
 
-func (r *VacancyRepository) getAll() ([]Vacancy, error) {
-	query := "SELECT * from vacancies"
+func (r *VacancyRepository) GetAll() ([]Vacancy, error) {
+	query := "SELECT * from vacancies ORDER BY createdat"
 	rows, err := r.Dbpool.Query(context.Background(), query)
 	if err != nil {
 		return nil, err

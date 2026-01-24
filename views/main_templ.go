@@ -11,9 +11,9 @@ import templruntime "github.com/a-h/templ/runtime"
 import "demo/go-fiber/views/components"
 import "demo/go-fiber/views/layout"
 import "demo/go-fiber/views/widgets"
-import "time"
+import "demo/go-fiber/internal/vacancy"
 
-func Main() templ.Component {
+func Main(vacancies []vacancy.Vacancy) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -144,19 +144,25 @@ func Main() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
-				Createdat:   time.Now(),
-				Role:        "Engineer",
-				Email:       "example@mail.com",
-				Company:     "ExampleCorp",
-				Salary:      "1000$",
-				CompanyType: "IT",
-				Location:    "Online",
-			}).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</main>")
+			for _, vacancy := range vacancies {
+				templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
+					Createdat:   vacancy.CreatedAt,
+					Role:        vacancy.Role,
+					Email:       vacancy.Email,
+					Company:     vacancy.Company,
+					Salary:      vacancy.Salary,
+					CompanyType: vacancy.Type,
+					Location:    vacancy.Location,
+				}).Render(ctx, templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</div></main>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -34,7 +34,7 @@ func main() {
 
 	// Handlers
 	vacancy.NewHandler(app, customLogger, vacancyRepo)
-	home.NewHandler(app, customLogger)
+	home.NewHandler(app, customLogger, vacancyRepo)
 
 	app.Listen(":3000")
 }

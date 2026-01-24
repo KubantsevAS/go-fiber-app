@@ -1,6 +1,7 @@
 package home
 
 import (
+	"demo/go-fiber/internal/vacancy"
 	"demo/go-fiber/pkg/tadaptor"
 	"demo/go-fiber/views"
 	"net/http"
@@ -12,6 +13,7 @@ import (
 type HomeHandler struct {
 	router       fiber.Router
 	customLogger *zerolog.Logger
+	repository   *vacancy.VacancyRepository
 }
 
 type User struct {
@@ -19,10 +21,11 @@ type User struct {
 	Name string
 }
 
-func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
+func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *vacancy.VacancyRepository) {
 	h := &HomeHandler{
 		router:       router,
 		customLogger: customLogger,
+		repository:   repository,
 	}
 	api := h.router.Group("/api")
 	api.Get("/", h.home)
@@ -30,7 +33,13 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger) {
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
-	component := views.Main()
+	vacancies, err := h.repository.GetAll()
+	if err != nil {
+		h.customLogger.Error().Msg(err.Error())
+		return c.SendStatus(500)
+	}
+
+	component := views.Main(vacancies)
 	return tadaptor.Render(c, component, http.StatusOK)
 }
 
