@@ -12,8 +12,6 @@ func Title2Class() templ.CSSClass {
 	templ_7745c5c3_CSSBuilder := templruntime.GetBuilder()
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`display`, "flex")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`flex-direction`, "column")))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`align-items`, "center")))
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`text-align`, "center")))
 	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`gap`, "40px")))
 	templ_7745c5c3_CSSID := templ.CSSID(`Title2Class`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{

@@ -2,7 +2,13 @@ package layout
 
 
 templ Vacancy() {
-    <section class={VacancyClass()}>
+    <style>
+        [data-vacancy] div {
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <section data-vacancy class={VacancyClass()}>
         { children... }
     </section>
 }

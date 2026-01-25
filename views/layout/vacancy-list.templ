@@ -1,0 +1,17 @@
+package layout
+
+
+templ VacancyList() {
+    <section class={VacancyListClass()}>
+        { children... }
+    </section>
+}
+
+css VacancyListClass() {
+    background: { templ.SafeCSSProperty("var(--color-white)") };
+    gap: { "60px" };
+    padding: { "60px 0 120px"};
+    max-width: { "1296px" };
+    margin: { "0 auto" };
+    align-items: { "flex-start" };
+}

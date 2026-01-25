@@ -19,6 +19,17 @@ templ Main(vacancies []vacancy.Vacancy) {
                     Subtitle: "Easy way to use",
                 })
             }
+            @layout.VacancyList(){
+                @layout.Title2(){
+                    @components.Title2(components.Title2Props{
+                        Title: "Last vacancies",
+                    })
+                    @components.Subtitle2(components.Subtitle2Props{
+                        Subtitle: "Find your relative job in minutes!",
+                    })
+                }     
+                @widgets.VacancyList(vacancies)
+            }
             @layout.Vacancy(){
                 @layout.Title2(){
                     @components.Title2(components.Title2Props{
@@ -30,19 +41,6 @@ templ Main(vacancies []vacancy.Vacancy) {
                 }
                 @widgets.VacancyForm()
             }
-            <div>
-                for _, vacancy := range vacancies {
-                    @components.VacancyCard(components.VacancyCardProps{
-                        Createdat: vacancy.CreatedAt,
-                        Role: vacancy.Role,
-                        Email: vacancy.Email,
-                        Company: vacancy.Company,
-                        Salary: vacancy.Salary,
-                        CompanyType: vacancy.Type,
-                        Location: vacancy.Location,
-                    })
-                }
-            </div>
         </main>
     }
 }
