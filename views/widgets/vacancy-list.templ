@@ -2,8 +2,9 @@ package widgets
 
 import "demo/go-fiber/internal/vacancy"
 import "demo/go-fiber/views/components"
+import "fmt"
 
-templ VacancyList(vacancies []vacancy.Vacancy) {
+templ VacancyList(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) {
     @VacancyListStyle()
     <div class="vacancy-list">
         for _, vacancy := range vacancies {
@@ -17,6 +18,14 @@ templ VacancyList(vacancies []vacancy.Vacancy) {
                 Location: vacancy.Location,
             })
         }
+    </div>
+    <div>
+    if currentPage != 1 {
+        <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage - 1))}>Previous</a>
+    }
+    if currentPage != pagesCount {
+        <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage + 1))}>Next</a>
+    }
     </div>
 }
 

@@ -5,7 +5,7 @@ import "demo/go-fiber/views/layout"
 import "demo/go-fiber/views/widgets"
 import "demo/go-fiber/internal/vacancy"
 
-templ Main(vacancies []vacancy.Vacancy) {
+templ Main(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) {
     @layout.Layout(layout.LayoutProps{
         Title: "Find a dream job",
         MetaDescription: "Website for job search",
@@ -28,7 +28,7 @@ templ Main(vacancies []vacancy.Vacancy) {
                         Subtitle: "Find your relative job in minutes!",
                     })
                 }     
-                @widgets.VacancyList(vacancies)
+                @widgets.VacancyList(vacancies, pagesCount, currentPage)
             }
             @layout.Vacancy(){
                 @layout.Title2(){
