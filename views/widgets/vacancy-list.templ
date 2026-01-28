@@ -7,25 +7,33 @@ import "fmt"
 templ VacancyList(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) {
     @VacancyListStyle()
     <div class="vacancy-list">
-        for _, vacancy := range vacancies {
-            @components.VacancyCard(components.VacancyCardProps{
-                Createdat: vacancy.CreatedAt,
-                Role: vacancy.Role,
-                Email: vacancy.Email,
-                Company: vacancy.Company,
-                Salary: vacancy.Salary,
-                CompanyType: vacancy.Type,
-                Location: vacancy.Location,
-            })
-        }
-    </div>
-    <div>
-    if currentPage != 1 {
-        <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage - 1))}>Previous</a>
-    }
-    if currentPage != pagesCount {
-        <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage + 1))}>Next</a>
-    }
+        <div class="vacancy-cards">
+            for _, vacancy := range vacancies {
+                @components.VacancyCard(components.VacancyCardProps{
+                    Createdat: vacancy.CreatedAt,
+                    Role: vacancy.Role,
+                    Email: vacancy.Email,
+                    Company: vacancy.Company,
+                    Salary: vacancy.Salary,
+                    CompanyType: vacancy.Type,
+                    Location: vacancy.Location,
+                })
+            }
+        </div>
+        <div class="vacancy-pagination">
+            <div class="vacancy-pagination__button">
+                if currentPage != 1 {
+                    <img src="/static/icons/chevronRight.svg" alt="chevron" style="transform: rotate(180deg);">
+                    <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage - 1))}>Previous</a>
+                }
+            </div>
+            <div class="vacancy-pagination__button">
+                if currentPage != pagesCount {
+                    <a href={templ.SafeURL(fmt.Sprintf("?page=%d", currentPage + 1))}>Next</a>
+                    <img src="/static/icons/chevronRight.svg" alt="chevron">
+                }
+            </div>
+        </div>
     </div>
 }
 
@@ -33,10 +41,34 @@ templ VacancyListStyle() {
     <style>
         .vacancy-list {
             display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
+        .vacancy-cards {
+            display: flex;
             align-items: center;
             gap: 24px;
             flex-direction: column;
             width: 100%;
+        }
+        .vacancy-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: 17px 0;
+        }
+        .vacancy-pagination__button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+        }
+        .vacancy-pagination__button a {
+            text-decoration: none;
+            color: #6C757D;
+            font-size: 20px;
         }
     </style>
 }
