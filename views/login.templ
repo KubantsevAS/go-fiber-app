@@ -1,0 +1,24 @@
+package views
+
+import "demo/go-fiber/views/components"
+import "demo/go-fiber/views/layout"
+import "demo/go-fiber/views/widgets"
+
+templ Login() {
+    @layout.Layout(layout.LayoutProps{
+        Title: "Authorization",
+        MetaDescription: "Enter your credentials",
+    }) {
+        <main>
+            @layout.Header() {
+                @widgets.Menu()
+                @components.Title(components.TitleProps{
+                    Title: "Authorization",
+                })
+                @components.Subtitle(components.SubtitleProps{
+                    Subtitle: "Enter your credentials",
+                })
+            }
+        </main>
+    }
+}

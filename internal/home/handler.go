@@ -31,6 +31,8 @@ func NewHandler(router fiber.Router, customLogger *zerolog.Logger, repository *v
 	api := h.router.Group("/api")
 	api.Get("/", h.home)
 	api.Get("/error", h.error)
+
+	h.router.Get("/login", h.login)
 }
 
 func (h *HomeHandler) home(c *fiber.Ctx) error {
@@ -54,4 +56,9 @@ func (h *HomeHandler) error(c *fiber.Ctx) error {
 		Int("id", 10).
 		Msg("INFO")
 	return fiber.NewError(fiber.StatusBadRequest, "Limit params is undefined")
+}
+
+func (h *HomeHandler) login(c *fiber.Ctx) error {
+	component := views.Login()
+	return tadaptor.Render(c, component, http.StatusOK)
 }

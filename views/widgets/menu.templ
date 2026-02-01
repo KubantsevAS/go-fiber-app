@@ -1,0 +1,42 @@
+package widgets
+
+templ Menu() {
+    @MenuStyles()
+    <div class="menu">
+        <div class="menu-logo">
+            <a href="/api">
+                <img src="/static/icons/homeLogo.svg" alt="home">
+            </a>
+            <span class="menu-logo">My Job</span>
+        </div>
+        <div class="menu-navigation">
+            { children... }
+        </div>
+    </div>
+}
+
+templ MenuStyles() {
+    <style>
+        .menu {
+            width: 100%;
+            height: 50px;
+            max-width: 1296px;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;   
+            box-sizing: content-box;
+        }
+        .menu-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 28px;
+        }
+        .menu-navigation {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+    </style>
+}

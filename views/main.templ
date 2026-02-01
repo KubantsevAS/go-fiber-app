@@ -12,6 +12,10 @@ templ Main(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) {
     }) {
         <main>
             @layout.Header() {
+                @widgets.Menu() {
+                    @components.Link("Login", "/login")
+                    @components.LinkButton("Registration", "/register")
+                }
                 @components.Title(components.TitleProps{
                     Title: "Find your dream job",
                 })
