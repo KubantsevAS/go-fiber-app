@@ -1,0 +1,42 @@
+package widgets
+
+import "demo/go-fiber/views/components"
+
+templ LoginForm() {
+    @LoginFormStyle()
+    <form
+        class="login-form"
+        hx-post="/"
+        hx-trigger="submit"
+    >
+        @components.Input(components.InputProps{
+            Name: "login",
+            Placeholder: "Login",
+        })
+        @components.Input(components.InputProps{
+            Name: "password",
+            Placeholder: "Password",
+        })
+        @components.SubmitButton() {
+            <div class="vacancy-button-text">Login</div>
+            <div class="vacancy-loader"></div>
+        }
+    </form>
+}
+
+templ LoginFormStyle() {
+    <style>
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 520px;
+            width: 100%;
+        }
+        .login-form input {
+            align-self: stretch;
+        }
+    </style>
+}
