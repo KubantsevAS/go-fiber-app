@@ -68,6 +68,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "job_title",
 			Placeholder: "Job Title",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -75,6 +76,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "company",
 			Placeholder: "Company",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -82,6 +84,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "company_scope",
 			Placeholder: "Company scope",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -89,6 +92,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "salary",
 			Placeholder: "Salary",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -96,6 +100,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "location",
 			Placeholder: "Location",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -103,6 +108,7 @@ func VacancyForm() templ.Component {
 		templ_7745c5c3_Err = components.Input(components.InputProps{
 			Name:        "email",
 			Placeholder: "Email",
+			Type:        "text",
 		}).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

@@ -3,25 +3,32 @@ package widgets
 import "demo/go-fiber/views/components"
 
 templ LoginForm() {
-    @LoginFormStyle()
-    <form
-        class="login-form"
-        hx-post="/"
-        hx-trigger="submit"
-    >
-        @components.Input(components.InputProps{
-            Name: "login",
-            Placeholder: "Login",
-        })
-        @components.Input(components.InputProps{
-            Name: "password",
-            Placeholder: "Password",
-        })
-        @components.SubmitButton() {
-            <div class="vacancy-button-text">Login</div>
-            <div class="vacancy-loader"></div>
-        }
-    </form>
+    <div style="display: contents" hx-ext="response-targets">
+        @LoginFormStyle()
+        <div id="login-result"></div>
+        <form
+            class="login-form"
+            hx-post="/api/login"
+            hx-trigger="submit"
+            hx-target-error="#login-result"
+            hx-swap="innerHTML swap:.2s"
+        >
+            @components.Input(components.InputProps{
+                Name: "login",
+                Placeholder: "Login",
+                Type: "text",
+            })
+            @components.Input(components.InputProps{
+                Name: "password",
+                Placeholder: "Password",
+                Type: "password",
+            })
+            @components.SubmitButton() {
+                <div class="vacancy-button-text">Login</div>
+                <div class="vacancy-loader"></div>
+            }
+        </form>
+    </div>
 }
 
 templ LoginFormStyle() {

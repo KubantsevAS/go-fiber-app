@@ -4,6 +4,7 @@ import (
 	"demo/go-fiber/internal/vacancy"
 	"demo/go-fiber/pkg/tadaptor"
 	"demo/go-fiber/views"
+	"demo/go-fiber/views/components"
 	"math"
 	"net/http"
 
@@ -41,6 +42,7 @@ func NewHandler(deps HomeHandlerDeps) {
 	api := h.router.Group("/api")
 	api.Get("/", h.home)
 	api.Get("/error", h.error)
+	api.Post("/login", h.apiLogin)
 
 	h.router.Get("/login", h.login)
 }
@@ -77,17 +79,33 @@ func (h *HomeHandler) error(c *fiber.Ctx) error {
 	return fiber.NewError(fiber.StatusBadRequest, "Limit params is undefined")
 }
 
+func (h *HomeHandler) apiLogin(c *fiber.Ctx) error {
+	form := LoginForm{
+		Login:    c.FormValue("login"),
+		Password: c.FormValue("password"),
+	}
+
+	if form.Login == "a@a.ru" && form.Password == "1" {
+		sess, err := h.store.Get(c)
+
+		if err != nil {
+			panic(err)
+		}
+		sess.Set("login", form.Login)
+		if err := sess.Save(); err != nil {
+			panic(err)
+		}
+
+		c.Response().Header.Add("Hx-Redirect", "/api")
+
+		return c.Redirect("/", http.StatusOK)
+	}
+
+	component := components.Notification("Wrong credentials", "fail")
+	return tadaptor.Render(c, component, http.StatusBadRequest)
+}
+
 func (h *HomeHandler) login(c *fiber.Ctx) error {
 	component := views.Login()
-
-	sess, err := h.store.Get(c)
-	if err != nil {
-		panic(err)
-	}
-	sess.Set("name", "Tony")
-	if err := sess.Save(); err != nil {
-		panic(err)
-	}
-
 	return tadaptor.Render(c, component, http.StatusOK)
 }
