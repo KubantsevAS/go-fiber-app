@@ -43,6 +43,7 @@ func VacancyList(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) t
 		}
 		for _, vacancy := range vacancies {
 			templ_7745c5c3_Err = components.VacancyCard(components.VacancyCardProps{
+				Id:          vacancy.Id,
 				Createdat:   vacancy.CreatedAt,
 				Role:        vacancy.Role,
 				Email:       vacancy.Email,
@@ -67,7 +68,7 @@ func VacancyList(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) t
 			var templ_7745c5c3_Var2 templ.SafeURL
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("?page=%d", currentPage-1)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 27, Col: 84}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 28, Col: 84}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -90,7 +91,7 @@ func VacancyList(vacancies []vacancy.Vacancy, pagesCount int, currentPage int) t
 			var templ_7745c5c3_Var3 templ.SafeURL
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("?page=%d", currentPage+1)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 32, Col: 84}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/widgets/vacancy-list.templ`, Line: 33, Col: 84}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
