@@ -30,6 +30,7 @@ func main() {
 	}))
 	app.Use(recover.New())
 	app.Static("/static", "./static")
+	app.Static("/robots.txt", "./static/robots.txt")
 
 	dbpool := database.CreateDbPool(dbConfig, customLogger)
 	defer dbpool.Close()
