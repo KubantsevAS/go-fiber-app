@@ -10,10 +10,23 @@ templ Layout(props LayoutProps) {
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <title>{props.Title}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{props.Title}</title>
-        <meta name="description" content={props.MetaDescription}>
+        <meta name="description" content={props.MetaDescription} />
+        <meta property="og:title" content={props.Title} />
+        <meta property="og:description" content={props.MetaDescription} />
+        <meta property="og:image" content="../../static/favIcons/Fav.png" />
+
+        <link rel="icon" type="image/png" href="../../static/favIcons/favicon-32x32.png">
+        <link rel="apple-touch-icon" sizes="48x48" href="../../static/favIcons/favicon-48x48.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../../static/favIcons/favicon-72x72.png">
+        <link rel="apple-touch-icon" sizes="96x96" href="../../static/favIcons/favicon-96x96.png">
+        <link rel="apple-touch-icon" sizes="256x256" href="../../static/favIcons/favicon-256x256.png">
+        <link rel="apple-touch-icon" sizes="384x384" href="../../static/favIcons/favicon-384x384.png">
+        <link rel="apple-touch-icon" sizes="512x512" href="../../static/favIcons/favicon-512x512.png">
+        <link rel="manifest" href="../../static/favIcons/manifest.webmanifest" crossorigin="anonymous">
+
         <link rel="stylesheet" href="/static/styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

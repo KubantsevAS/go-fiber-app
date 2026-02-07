@@ -3,6 +3,7 @@ package main
 import (
 	"demo/go-fiber/config"
 	"demo/go-fiber/internal/home"
+	"demo/go-fiber/internal/sitemap"
 	"demo/go-fiber/internal/vacancy"
 	"demo/go-fiber/pkg/database"
 	"demo/go-fiber/pkg/logger"
@@ -56,6 +57,7 @@ func main() {
 		Repository:   vacancyRepo,
 		Store:        store,
 	})
+	sitemap.NewHandler(app)
 
 	app.Listen(":3000")
 }
