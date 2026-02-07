@@ -10,6 +10,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o ./main ./cmd/main.go
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/main .
+COPY --from=builder /app/static ./static
 EXPOSE 3000
 
 CMD ["./main"]
