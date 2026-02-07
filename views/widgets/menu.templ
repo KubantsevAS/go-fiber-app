@@ -1,5 +1,7 @@
 package widgets
 
+import "demo/go-fiber/views/components"
+
 templ Menu() {
     @MenuStyles()
     <div class="menu">
@@ -10,7 +12,18 @@ templ Menu() {
             <span class="menu-logo">My Job</span>
         </div>
         <div class="menu-navigation">
-            { children... }
+            {{ email := ctx.Value("login").(string) }}
+            if email == "" {
+                @components.Link("Login", "/login")
+                @components.LinkButton("Registration", "/register")
+            } else {
+                <span>{ ctx.Value("login").(string) }</span>
+                <a 
+                    hx-get="/api/logout"
+                    hx-trigger="click"
+                >Exit</a>
+                // @components.Link("Exit", "/exit")
+            }
         </div>
     </div>
 }

@@ -43,6 +43,7 @@ func NewHandler(deps HomeHandlerDeps) {
 	api.Get("/", h.home)
 	api.Get("/error", h.error)
 	api.Post("/login", h.apiLogin)
+	api.Get("/logout", h.apiLogout)
 
 	h.router.Get("/login", h.login)
 }
@@ -50,14 +51,6 @@ func NewHandler(deps HomeHandlerDeps) {
 func (h *HomeHandler) home(c *fiber.Ctx) error {
 	PAGE_ITEMS := 2
 	page := c.QueryInt("page", 1)
-
-	sess, err := h.store.Get(c)
-	if err != nil {
-		panic(err)
-	}
-	if name, ok := sess.Get("name").(string); ok {
-		h.customLogger.Info().Msg(name)
-	}
 
 	count := h.repository.CountAll()
 	vacancies, err := h.repository.GetAll(PAGE_ITEMS, (page-1)*PAGE_ITEMS)
@@ -107,5 +100,20 @@ func (h *HomeHandler) apiLogin(c *fiber.Ctx) error {
 
 func (h *HomeHandler) login(c *fiber.Ctx) error {
 	component := views.Login()
+
 	return tadaptor.Render(c, component, http.StatusOK)
+}
+
+func (h *HomeHandler) apiLogout(c *fiber.Ctx) error {
+	sess, err := h.store.Get(c)
+	if err != nil {
+		panic(err)
+	}
+	sess.Delete("login")
+	if err := sess.Save(); err != nil {
+		panic(err)
+	}
+
+	c.Response().Header.Add("Hx-Redirect", "/login")
+	return c.Redirect("/", http.StatusOK)
 }
